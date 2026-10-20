@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Công cụ đóng gói ảnh 20/10</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 100%);
+      padding: 30px 16px;
+      text-align: center;
+      color: #333;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .card {
+      background: white;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(255, 182, 193, 0.4);
+    }
+    h2 {
+      color: #e11d48;
+      margin-top: 0;
+      font-size: 24px;
+    }
+    p {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    input[type="file"] {
+      margin: 18px 0;
+      max-width: 100%;
+      font-size: 14px;
+      padding: 10px;
+      border: 2px dashed #fda4af;
+      border-radius: 12px;
+      background: #fff1f2;
+      cursor: pointer;
+    }
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      height: 220px;
+      margin-top: 15px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      color: #334155;
+      resize: vertical;
+    }
+    button {
+      background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+      color: white;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+      transition: all 0.2s ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(225, 29, 72, 0.45);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+    #status {
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 12px;
+      min-height: 20px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #ffe4e6;
+      color: #e11d48;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">Dành cho Thiệp 20/10</div>
+    <h2>🌹 Công cụ đóng gói ảnh Base64</h2>
+    <p>Chọn tối đa 4 bức ảnh kỷ niệm từ máy tính hoặc điện thoại. Công cụ sẽ tự động nén (cạnh tối đa 900px, JPEG 0.8) và sinh mã JSON sẵn sàng nhúng trực tiếp vào thiệp.</p>
+    
+    <input type="file" id="imageInput" multiple accept="image/*"><br>
+    <button id="convertButton" type="button" onclick="processImages()">
+      🚀 Chuyển đổi & Nhúng vào Code
+    </button>
+    
+    <p id="status" role="status" aria-live="polite"></p>
+    <textarea id="resultOutput" placeholder="Mã JSON chứa ảnh Base64 sẽ xuất hiện ở đây..." readonly onclick="this.select()"></textarea>
+  </div>
+
+  <script>
+    const titles = [
+      "Nụ cười tỏa nắng",
+      "Khoảnh khắc ngọt ngào",
+      "Bên nhau bình yên",
+      "Mãi yêu em"
+    ];
+
+    const captions = [
+      "Từ khoảnh khắc đầu tiên nhìn thấy nụ cười của em, thế giới của anh bỗng dịu dàng hơn hẳn.",
+      "Mỗi phút giây ở bên em đều trở thành một ký ức mà anh muốn giữ thật lâu.",
+      "Cảm ơn em đã bước vào thế giới của anh và mang theo muôn vàn ánh sáng ấm áp.",
+      "Chỉ cần nhìn thấy em hạnh phúc, mọi mệt mỏi ngoài kia đều tan biến hết."
+    ];
+
+    async function processImages() {
+      const input = document.getElementById("imageInput");
+      const status = document.getElementById("status");
+      const output = document.getElementById("resultOutput");
+      const button = document.getElementById("convertButton");
+      const files = Array.from(input.files).slice(0, 4);
+
+      if (files.length === 0) {
+        status.textContent = "⚠️ Vui lòng chọn ít nhất một ảnh.";
+        status.style.color = "#e11d48";
+        return;
+      }
+
+      button.disabled = true;
+      status.textContent = "⏳ Đang xử lý và nén ảnh...";
+      status.style.color = "#0284c7";
+      output.value = "";
+
+      try {
+        const photoArray = [];
+
+        for (let i = 0; i < files.length; i++) {
+          if (!files[i].type.startsWith("image/")) {
+            throw new Error(`Tệp thứ ${i + 1} không phải ảnh hợp lệ.`);
+          }
+
+          const base64 = await resizeAndCompress(files[i]);
+          photoArray.push({
+            url: base64,
+            date: `Kỷ niệm #${i + 1}`,
+            title: titles[i] || `Kỷ niệm #${i + 1}`,
+            caption: captions[i] || "Khoảnh khắc đáng nhớ của chúng mình."
+          });
+        }
+
+        output.value = JSON.stringify(photoArray, null, 2);
+        status.textContent = `✨ Hoàn tất ${photoArray.length} ảnh! Bấm vào khung mã bên dưới để sao chép.`;
+        status.style.color = "#16a34a";
+      } catch (error) {
+        status.textContent = `❌ Không thể xử lý ảnh: ${error.message}`;
+        status.style.color = "#dc2626";
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    function resizeAndCompress(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onerror = () => reject(new Error("Không đọc được tệp ảnh."));
+        reader.onload = () => {
+          const img = new Image();
+
+          img.onerror = () => reject(new Error("Tệp không phải ảnh hợp lệ hoặc ảnh bị lỗi."));
+          img.onload = () => {
+            const maxSide = 900;
+            const ratio = Math.min(1, maxSide / Math.max(img.width, img.height));
+            const width = Math.max(1, Math.round(img.width * ratio));
+            const height = Math.max(1, Math.round(img.height * ratio));
+            const canvas = document.createElement("canvas");
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            if (!ctx) {
+              reject(new Error("Trình duyệt không hỗ trợ Canvas 2D."));
+              return;
+            }
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            try {
+              resolve(canvas.toDataURL("image/jpeg", 0.8));
+            } catch (error) {
+              reject(new Error("Không thể xuất ảnh đã nén."));
+            }
+          };
+
+          img.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</body>
+</html>

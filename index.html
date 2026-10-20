@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Vũ Trụ Ký Ức 20/10 — Món Quà Trao Em</title>
+  <meta name="description" content="Thiệp tương tác 20/10 đa giác quan: Quét nhịp tim, lau gương sương mù, bộ bài ký ức 3D và hoa hồng pha lê.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            script: ['"Dancing Script"', 'cursive'],
+          },
+          colors: {
+            roseGold: '#f7cad0',
+            velvetRose: '#9f1239',
+            wineDark: '#120309',
+            wineDeep: '#4a0e2e',
+            goldGlow: '#f59e0b',
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s infinite linear',
+            'laser-sweep': 'laserSweep 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' },
+            },
+            laserSweep: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS for 3D Deck, Hologram, Ken Burns & Animations -->
+  <style>
+    :root {
+      --app-height: 100dvh;
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      height: 100dvh;
+      height: 100vh; /* fallback */
+      overflow: hidden;
+      touch-action: pan-y;
+      background-color: #080310;
+    }
+
+    /* Cosmic Gradient Backgrounds */
+    .bg-cosmic-universe {
+      background: radial-gradient(ellipse at top, #1e0b36 0%, #0d051a 50%, #06020c 100%);
+      transition: background 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .bg-chapter-4 {
+      background: radial-gradient(circle at center, #4a0e2e 0%, #200412 55%, #0d0107 100%) !important;
+    }
+
+    /* Glassmorphism Classes */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-modal {
+      background: rgba(18, 10, 30, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Chapter 1: Biometric Scanner Elements */
+    .scan-circle-container {
+      position: relative;
+      touch-action: none;
+    }
+
+    .ripple-ring {
+      position: absolute;
+      inset: -15px;
+      border-radius: 9999px;
+      border: 2px solid rgba(244, 63, 94, 0.5);
+      animation: ripplePulse 1.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      pointer-events: none;
+    }
+    .ripple-ring:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+    .ripple-ring:nth-child(3) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes ripplePulse {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.45);
+        opacity: 0;
+      }
+    }
+
+    /* Chapter 2: Arched Mirror */
+    .arched-mirror-frame {
+      border-radius: 180px 180px 24px 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 35px rgba(244, 63, 94, 0.35), inset 0 0 20px rgba(255, 255, 255, 0.2);
+      border: 3px solid rgba(245, 158, 11, 0.6);
+    }
+
+    /* Ken Burns Effect */
+    .ken-burns {
+      animation: kenBurnsZoom 18s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
+    @keyframes kenBurnsZoom {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.12) translate(-2%, 2%); }
+      100% { transform: scale(1.05) translate(2%, -1%); }
+    }
+
+    /* Chapter 3: 3D Stacked Deck */
+    .deck-stage {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 380px;
+    }
+
+    .memory-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 290px;
+      max-width: 86vw;
+      height: 380px;
+      border-radius: 20px;
+      transform-origin: center bottom;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, filter 0.5s ease;
+      will-change: transform, opacity;
+      cursor: grab;
+      touch-action: pan-y;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+    @media (min-height: 750px) {
+      .deck-stage {
+        height: 420px;
+      }
+      .memory-card {
+        width: 310px;
+        height: 420px;
+      }
+    }
+
+    /* Holographic Foil Glare */
+    .hologram-glare {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.15) 35%,
+        rgba(244, 63, 94, 0.25) 45%,
+        rgba(56, 189, 248, 0.25) 55%,
+        rgba(251, 191, 36, 0.2) 65%,
+        transparent 80%
+      );
+      background-size: 250% 250%;
+      opacity: 0.6;
+      mix-blend-mode: color-dodge;
+      pointer-events: none;
+      animation: hologramSweep 6s ease-in-out infinite alternate;
+      z-index: 10;
+    }
+    @keyframes hologramSweep {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Card Fly-out Transitions */
+    .card-fly-out-left {
+      transform: translate3d(-140%, -30px, 90px) rotateY(-35deg) rotateZ(-16deg) !important;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+    .card-fly-out-right {
+      transform: translate3d(140%, -30px, 90px) rotateY(35deg) rotateZ(16deg) !important;
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+
+    /* Sparkle Particle Generator Container */
+    .sparkle-particle {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 0%, #fbbf24 60%, transparent 100%);
+      box-shadow: 0 0 10px #fbbf24, 0 0 20px #f43f5e;
+      animation: sparkleFly 0.85s ease-out forwards;
+    }
+    @keyframes sparkleFly {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Chapter 4: 3D Crystal Rose & Glass Dome */
+    .dome-stage {
+      perspective: 1000px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 280px;
+      height: 280px;
+    }
+    @media (min-height: 750px) {
+      .dome-stage {
+        width: 320px;
+        height: 320px;
+      }
+    }
+
+    /* Rose Bouquet Centerpiece & Floating Hover Animation */
+    .bouquet-stage-wrapper {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bouquet-float {
+      animation: bouquetHover 4.5s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes bouquetHover {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translateY(-8px) rotate(0.8deg) scale(1.02);
+      }
+    }
+
+    /* Orbiting Thumbnails in 3D */
+    .orbit-photo {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      border-radius: 9999px;
+      border: 2px solid rgba(251, 191, 36, 0.95);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 16px rgba(244, 63, 94, 0.8), 0 0 8px rgba(251, 191, 36, 0.7);
+      overflow: hidden;
+      will-change: transform, opacity, z-index;
+      transition: box-shadow 0.3s ease;
+      pointer-events: none;
+    }
+
+    /* Typewriter blinking caret */
+    .typewriter-cursor::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 2px;
+      color: #f43f5e;
+      animation: blinkCursor 0.8s infinite;
+    }
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Secret Area: invisible touch hotspot top-left */
+    #secret-trigger-area {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 55px;
+      height: 55px;
+      z-index: 9999;
+      background: transparent;
+      cursor: default;
+    }
+
+    /* Custom Scrollbar for Studio */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(244, 63, 94, 0.4);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(244, 63, 94, 0.7);
+    }
+  </style>
+</head>
+<body class="relative text-slate-100 flex flex-col justify-between select-none bg-cosmic-universe">
+
+  <!-- Secret 3-Tap Hotspot (Top-Left) to restore Studio if locked -->
+  <div id="secret-trigger-area" title="Vùng chạm bí mật"></div>
+
+  <!-- Background Starfield & Floating Stardust Canvas -->
+  <canvas id="stars-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Confetti Celebration Canvas (Chapter 4) -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="relative z-30 px-4 py-3 flex items-center justify-between border-b border-white/10 backdrop-blur-md bg-black/20">
+    <!-- Brand / Recipient Info -->
+    <div class="flex items-center space-x-2">
+      <span class="text-rose-400 text-lg animate-pulse">✨</span>
+      <div>
+        <h1 class="font-serif text-sm md:text-base font-semibold tracking-wide text-rose-200" id="header-her-name">Em yêu</h1>
+        <p class="text-[10px] text-slate-400 font-light tracking-wider uppercase">Vũ Trụ 20/10</p>
+      </div>
+    </div>
+
+    <!-- Stepper 4 Chapters -->
+    <div class="flex items-center space-x-1.5 md:space-x-3 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+      <button onclick="switchChapter(1)" class="chapter-step-btn group flex items-center space-x-1 text-xs" data-step="1">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-rose-500 text-white shadow-lg shadow-rose-500/50">1</span>
+        <span class="hidden md:inline text-xs text-rose-200">Quét tim</span>
+      </button>
+      <span class="text-white/20 text-xs">―</span>
+      <button onclick="switchChapter(2)" class="chapter-step-btn group flex items-center space-x-1 text-xs opacity-50" data-step="2">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-white/10 text-slate-300">2</span>
+        <span class="hidden md:inline text-xs text-slate-400">Soi gương</span>
+      </button>
+      <span class="text-white/20 text-xs">―</span>
+      <button onclick="switchChapter(3)" class="chapter-step-btn group flex items-center space-x-1 text-xs opacity-50" data-step="3">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-white/10 text-slate-300">3</span>
+        <span class="hidden md:inline text-xs text-slate-400">Kỷ niệm</span>
+      </button>
+      <span class="text-white/20 text-xs">―</span>
+      <button onclick="switchChapter(4)" class="chapter-step-btn group flex items-center space-x-1 text-xs opacity-50" data-step="4">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-white/10 text-slate-300">4</span>
+        <span class="hidden md:inline text-xs text-slate-400">Nhận quà</span>
+      </button>
+    </div>
+
+    <!-- Header Controls: Sound Toggle & Studio Button -->
+    <div class="flex items-center space-x-2">
+      <!-- Audio Toggle -->
+      <button id="sound-toggle-btn" class="p-2 rounded-full glass-card hover:bg-white/15 transition-all text-rose-300 text-sm flex items-center justify-center" aria-label="Bật/Tắt âm thanh" title="Âm thanh">
+        <span id="sound-icon">🔊</span>
+      </button>
+
+      <!-- Studio Button (can be hidden by secretLock) -->
+      <button id="studio-open-btn" class="px-2.5 py-1.5 rounded-full glass-card hover:bg-rose-500/20 border-rose-400/30 text-rose-200 text-xs flex items-center space-x-1 font-medium transition-all" aria-label="Mở Studio cài đặt">
+        <span>⚙️</span>
+        <span class="hidden sm:inline">Studio</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN STAGE ==================== -->
+  <main id="main-stage" class="relative z-10 flex-1 flex flex-col items-center justify-center p-3 sm:p-4 overflow-hidden">
+
+    <!-- ==================== CHAPTER 1: BIOMETRIC HEART SCANNER ==================== -->
+    <section id="chapter-1" class="chapter-panel w-full max-w-md flex flex-col items-center justify-center text-center animate-fadeIn">
+      <div class="mb-4">
+        <span class="inline-block px-3 py-1 text-xs uppercase tracking-widest text-rose-300 rounded-full bg-rose-500/10 border border-rose-500/20 mb-2">Chương 1</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-pink-300 to-amber-200">
+          Tần Số Nhịp Tim
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-light mt-1 max-w-xs mx-auto">
+          Chạm và giữ ngón tay vào tâm vòng tròn để giải mã ký ức dành riêng cho em.
+        </p>
+      </div>
+
+      <!-- Biometric Scanner Ring -->
+      <div class="scan-circle-container relative my-3 sm:my-5 flex items-center justify-center cursor-pointer" id="scanner-touch-target">
+        <!-- Ripple Pulse Rings -->
+        <div class="ripple-ring"></div>
+        <div class="ripple-ring"></div>
+        <div class="ripple-ring"></div>
+
+        <!-- SVG Progress Ring -->
+        <svg class="w-64 h-64 sm:w-72 sm:h-72 -rotate-90 transform" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" stroke="rgba(255, 255, 255, 0.08)" stroke-width="6" fill="none" />
+          <defs>
+            <linearGradient id="scanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f43f5e" />
+              <stop offset="50%" stop-color="#ec4899" />
+              <stop offset="100%" stop-color="#f59e0b" />
+            </linearGradient>
+          </defs>
+          <circle id="scan-progress-circle" cx="100" cy="100" r="90" stroke="url(#scanGradient)" stroke-width="6" stroke-linecap="round" fill="none"
+            stroke-dasharray="565.48" stroke-dashoffset="565.48" class="transition-all duration-75" />
+        </svg>
+
+        <!-- Inner Photo Cross-fade Container -->
+        <div class="absolute w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-2 border-rose-400/40 shadow-inner flex items-center justify-center bg-black/60">
+          <!-- 4 Layered Photos -->
+          <img id="scan-photo-0" src="" alt="Memory 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 filter blur-[6px]">
+          <img id="scan-photo-1" src="" alt="Memory 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 filter blur-[6px]">
+          <img id="scan-photo-2" src="" alt="Memory 3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 filter blur-[6px]">
+          <img id="scan-photo-3" src="" alt="Memory 4" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 filter blur-[6px]">
+
+          <!-- Laser Scan Line -->
+          <div id="laser-line" class="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-rose-400 to-transparent shadow-[0_0_12px_#f43f5e] opacity-0 transition-opacity"></div>
+
+          <!-- Prompt Fingerprint / Heart Overlay -->
+          <div id="scan-prompt-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/45 backdrop-blur-[2px] transition-opacity duration-300">
+            <svg class="w-16 h-16 text-rose-400 animate-pulse-slow filter drop-shadow-[0_0_10px_rgba(244,63,94,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            <span class="text-[11px] text-rose-200 mt-2 font-medium tracking-wide">CHẠM & GIỮ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scan Progress Indicator & State Message -->
+      <div class="mt-2 text-center">
+        <div class="text-xl font-bold font-mono text-rose-300" id="scan-percent-text">0%</div>
+        <p class="text-xs text-slate-400 mt-0.5 tracking-wide" id="scan-status-text">Đang chờ chạm để đồng bộ nhịp tim...</p>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 2: INTERACTIVE FOGGY MIRROR ==================== -->
+    <section id="chapter-2" class="chapter-panel hidden w-full max-w-sm sm:max-w-md flex flex-col items-center justify-center text-center">
+      <div class="mb-3">
+        <span class="inline-block px-3 py-1 text-xs uppercase tracking-widest text-rose-300 rounded-full bg-rose-500/10 border border-rose-500/20 mb-1.5">Chương 2</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-200 to-pink-300">
+          Gương Soi Thời Gian
+        </h2>
+        <p id="mirror-hint-text" class="text-xs text-rose-200/90 font-light mt-1">
+          Dùng ngón tay vuốt nhẹ để lau tan lớp sương mờ...
+        </p>
+      </div>
+
+      <!-- Arched Mirror Window with Fog Canvas -->
+      <div class="relative w-64 sm:w-72 h-80 sm:h-96 arched-mirror-frame shadow-2xl">
+        <!-- Revealed Background Image (Ken Burns) -->
+        <img id="mirror-bg-img" src="" alt="Mirror Reflection" class="w-full h-full object-cover ken-burns brightness-90 transition-all duration-700">
+
+        <!-- Fog Canvas (Scratch-off layer) -->
+        <canvas id="fog-canvas" class="absolute inset-0 w-full h-full cursor-crosshair transition-opacity duration-1000 z-10" style="touch-action: none;"></canvas>
+
+        <!-- Wiping Sparkle Indicator -->
+        <div id="wipe-progress-badge" class="absolute bottom-3 right-3 z-20 px-2.5 py-1 rounded-full text-[10px] font-mono bg-black/50 backdrop-blur-md border border-white/20 text-rose-200">
+          Đã lau: <span id="fog-cleared-pct">0</span>%
+        </div>
+      </div>
+
+      <!-- Romantic Quote Card (Reveals smoothly) -->
+      <div id="mirror-quote-card" class="mt-4 px-4 py-2.5 max-w-xs rounded-xl glass-card text-center opacity-0 transform translate-y-3 transition-all duration-700">
+        <p class="font-script text-lg text-rose-200" id="mirror-quote-text">
+          "Phía sau lớp sương mù luôn là hình bóng người con gái anh thương nhất..."
+        </p>
+      </div>
+
+      <!-- Actions: Proceed to Chapter 3 or Skip -->
+      <div class="mt-4 flex items-center space-x-3">
+        <button id="skip-mirror-btn" onclick="completeMirrorReveal()" class="px-4 py-1.5 text-xs text-slate-400 hover:text-white transition-colors">
+          Bỏ qua ❯
+        </button>
+        <button id="goto-chapter-3-btn" onclick="switchChapter(3)" class="hidden px-5 py-2 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white text-xs font-semibold shadow-lg shadow-rose-500/30 transition-all transform hover:scale-105 animate-pulse">
+          Khám Phá Ký Ức ➡️
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 3: 3D STACKED MEMORY DECK ==================== -->
+    <section id="chapter-3" class="chapter-panel hidden w-full max-w-lg flex flex-col items-center justify-center text-center">
+      <div class="mb-2 sm:mb-3">
+        <span class="inline-block px-3 py-1 text-xs uppercase tracking-widest text-rose-300 rounded-full bg-rose-500/10 border border-rose-500/20 mb-1">Chương 3</span>
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-rose-300 to-amber-200">
+          Bộ Bài Ký Ức 3D
+        </h2>
+        <p class="text-[11px] sm:text-xs text-slate-300 font-light">
+          Chạm vào bức ảnh để khám phá tiếp từng kỷ niệm.
+        </p>
+      </div>
+
+      <!-- 3D Deck Stage Container -->
+      <div class="deck-stage my-1 sm:my-2" id="deck-touch-stage">
+        <!-- 4 Memory Cards rendered simultaneously -->
+        <div id="card-0" class="memory-card glass-card cursor-pointer" onclick="handleCardClick(0)">
+          <div class="relative w-full h-[62%] sm:h-[65%] overflow-hidden bg-black/40">
+            <img id="card-img-0" src="" alt="Photo 1" class="w-full h-full object-cover ken-burns">
+            <div class="hologram-glare"></div>
+            <div class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-black/60 backdrop-blur-md border border-white/20 text-rose-200" id="card-date-0">
+              Kỷ niệm #1
+            </div>
+          </div>
+          <div class="p-3 sm:p-4 text-left flex flex-col justify-between h-[38%] sm:h-[35%] bg-gradient-to-b from-black/40 to-black/80">
+            <div>
+              <h3 class="font-serif text-sm sm:text-base font-bold text-rose-100" id="card-title-0">Nụ cười tỏa nắng</h3>
+              <p class="text-[11px] sm:text-xs text-slate-300 font-light mt-1 line-clamp-3 leading-relaxed" id="card-caption-0">
+                Từ khoảnh khắc đầu tiên nhìn thấy nụ cười của em, thế giới của anh bỗng dịu dàng hơn hẳn.
+              </p>
+            </div>
+            <div class="text-[9px] text-rose-300/80 uppercase tracking-widest text-right">Card 1 / 4</div>
+          </div>
+        </div>
+
+        <div id="card-1" class="memory-card glass-card cursor-pointer" onclick="handleCardClick(1)">
+          <div class="relative w-full h-[62%] sm:h-[65%] overflow-hidden bg-black/40">
+            <img id="card-img-1" src="" alt="Photo 2" class="w-full h-full object-cover ken-burns">
+            <div class="hologram-glare"></div>
+            <div class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-black/60 backdrop-blur-md border border-white/20 text-rose-200" id="card-date-1">
+              Kỷ niệm #2
+            </div>
+          </div>
+          <div class="p-3 sm:p-4 text-left flex flex-col justify-between h-[38%] sm:h-[35%] bg-gradient-to-b from-black/40 to-black/80">
+            <div>
+              <h3 class="font-serif text-sm sm:text-base font-bold text-rose-100" id="card-title-1">Khoảnh khắc ngọt ngào</h3>
+              <p class="text-[11px] sm:text-xs text-slate-300 font-light mt-1 line-clamp-3 leading-relaxed" id="card-caption-1">
+                Mỗi phút giây ở bên em đều trở thành một ký ức mà anh muốn giữ thật lâu.
+              </p>
+            </div>
+            <div class="text-[9px] text-rose-300/80 uppercase tracking-widest text-right">Card 2 / 4</div>
+          </div>
+        </div>
+
+        <div id="card-2" class="memory-card glass-card cursor-pointer" onclick="handleCardClick(2)">
+          <div class="relative w-full h-[62%] sm:h-[65%] overflow-hidden bg-black/40">
+            <img id="card-img-2" src="" alt="Photo 3" class="w-full h-full object-cover ken-burns">
+            <div class="hologram-glare"></div>
+            <div class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-black/60 backdrop-blur-md border border-white/20 text-rose-200" id="card-date-2">
+              Kỷ niệm #3
+            </div>
+          </div>
+          <div class="p-3 sm:p-4 text-left flex flex-col justify-between h-[38%] sm:h-[35%] bg-gradient-to-b from-black/40 to-black/80">
+            <div>
+              <h3 class="font-serif text-sm sm:text-base font-bold text-rose-100" id="card-title-2">Bên nhau bình yên</h3>
+              <p class="text-[11px] sm:text-xs text-slate-300 font-light mt-1 line-clamp-3 leading-relaxed" id="card-caption-2">
+                Cảm ơn em đã bước vào thế giới của anh và mang theo muôn vàn ánh sáng ấm áp.
+              </p>
+            </div>
+            <div class="text-[9px] text-rose-300/80 uppercase tracking-widest text-right">Card 3 / 4</div>
+          </div>
+        </div>
+
+        <div id="card-3" class="memory-card glass-card" onclick="handleCardClick(3)">
+          <div class="relative w-full h-[62%] sm:h-[65%] overflow-hidden bg-black/40">
+            <img id="card-img-3" src="" alt="Photo 4" class="w-full h-full object-cover ken-burns">
+            <div class="hologram-glare"></div>
+            <div class="absolute top-2 left-2 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-black/60 backdrop-blur-md border border-white/20 text-rose-200" id="card-date-3">
+              Kỷ niệm #4
+            </div>
+          </div>
+          <div class="p-3 sm:p-4 text-left flex flex-col justify-between h-[38%] sm:h-[35%] bg-gradient-to-b from-black/40 to-black/80">
+            <div>
+              <h3 class="font-serif text-sm sm:text-base font-bold text-rose-100" id="card-title-3">Mãi yêu em</h3>
+              <p class="text-[11px] sm:text-xs text-slate-300 font-light mt-1 line-clamp-3 leading-relaxed" id="card-caption-3">
+                Chỉ cần nhìn thấy em hạnh phúc, mọi mệt mỏi ngoài kia đều tan biến hết.
+              </p>
+            </div>
+            <div class="text-[9px] text-rose-300/80 uppercase tracking-widest text-right">Card 4 / 4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subtle Pagination Dots & Tap Prompt -->
+      <div class="mt-3 flex flex-col items-center space-y-2">
+        <!-- Pagination Dots -->
+        <div class="flex items-center space-x-2">
+          <span class="deck-dot w-2.5 h-2.5 rounded-full bg-rose-500 transition-all scale-125 shadow-[0_0_8px_#f43f5e]" data-index="0"></span>
+          <span class="deck-dot w-2 h-2 rounded-full bg-white/25 transition-all" data-index="1"></span>
+          <span class="deck-dot w-2 h-2 rounded-full bg-white/25 transition-all" data-index="2"></span>
+          <span class="deck-dot w-2 h-2 rounded-full bg-white/25 transition-all" data-index="3"></span>
+        </div>
+
+        <!-- Tap card prompt (hidden when at card 4) -->
+        <div id="tap-card-hint" class="flex items-center justify-center text-xs text-rose-300/85 space-x-1.5 animate-pulse transition-all">
+          <span>👆</span>
+          <span class="font-light">Chạm vào ảnh để xem tiếp...</span>
+        </div>
+
+        <!-- Chapter 4 Call To Action (Only visible on the last card) -->
+        <div id="gift-reveal-btn-container" class="transition-all duration-500 transform opacity-0 pointer-events-none scale-90 h-0 overflow-hidden">
+          <button id="open-gift-btn" onclick="switchChapter(4)" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-bold text-xs sm:text-sm shadow-xl shadow-rose-500/40 border border-amber-300/40 transition-all transform hover:scale-105 active:scale-95 animate-pulse">
+            🌱 Gieo Hạt Giống Hạnh Phúc (Nhận quà 20/10)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CHAPTER 4: ENCHANTED ROSE DOME & REAL GIFT ==================== -->
+    <section id="chapter-4" class="chapter-panel hidden w-full max-w-md flex flex-col items-center justify-center text-center">
+      <div class="mb-2">
+        <span class="inline-block px-3 py-1 text-xs uppercase tracking-widest text-amber-300 rounded-full bg-amber-500/10 border border-amber-500/30 mb-1">Chương 4</span>
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-300 to-pink-200">
+          Bó Hoa Dành Trao Em
+        </h2>
+      </div>
+
+      <!-- Dome & Orbiting Photos Stage -->
+      <div class="dome-stage my-2 sm:my-3">
+        <!-- Orbiting 4 Photos around Bouquet -->
+        <div id="orbit-photo-0" class="orbit-photo"><img src="" alt="Orbit 1" class="w-full h-full object-cover"></div>
+        <div id="orbit-photo-1" class="orbit-photo"><img src="" alt="Orbit 2" class="w-full h-full object-cover"></div>
+        <div id="orbit-photo-2" class="orbit-photo"><img src="" alt="Orbit 3" class="w-full h-full object-cover"></div>
+        <div id="orbit-photo-3" class="orbit-photo"><img src="" alt="Orbit 4" class="w-full h-full object-cover"></div>
+
+        <!-- Rose Bouquet Centerpiece (Bó hoa hồng rực rỡ thay cho hộp kính) -->
+        <div class="bouquet-stage-wrapper relative z-20 flex items-center justify-center">
+          <!-- Ambient warm aura / backlight behind bouquet -->
+          <div class="absolute w-52 h-52 sm:w-60 sm:h-60 rounded-full bg-gradient-to-tr from-rose-600/35 via-pink-500/25 to-amber-400/30 blur-2xl pointer-events-none -z-10 animate-pulse-slow"></div>
+
+          <!-- Magic Sparkles around Bouquet -->
+          <div class="absolute -top-3 -left-3 text-amber-300 text-lg animate-ping opacity-75 pointer-events-none">✨</div>
+          <div class="absolute top-2 -right-4 text-pink-300 text-sm animate-pulse pointer-events-none">✨</div>
+          <div class="absolute bottom-16 -left-5 text-amber-200 text-xs animate-pulse pointer-events-none">💫</div>
+          <div class="absolute bottom-10 -right-3 text-rose-300 text-sm animate-ping opacity-60 pointer-events-none">✨</div>
+
+          <!-- Bouquet of Roses Image with floating hover animation -->
+          <div class="relative w-48 h-56 sm:w-56 sm:h-64 bouquet-float flex items-center justify-center">
+            <picture class="w-full h-full flex items-center justify-center">
+              <source srcset="rose_bouquet.webp" type="image/webp">
+              <img src="rose_bouquet.png" alt="Bó hoa hồng trao em" class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] drop-shadow-[0_0_25px_rgba(244,63,94,0.45)] drop-shadow-[0_0_15px_rgba(251,191,36,0.25)] select-none pointer-events-none">
+            </picture>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-Gift Countdown Timer & Synchronizer -->
+      <div id="countdown-wrapper" class="mt-2 flex flex-col items-center">
+        <div id="countdown-label" class="text-[11px] text-amber-200 tracking-wider uppercase font-medium">Khoảnh khắc đặc biệt sau:</div>
+        <div class="relative flex items-center justify-center my-1.5">
+          <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+            <div id="countdown-number" class="text-3xl font-black font-mono text-amber-300 drop-shadow-[0_0_15px_#f59e0b] transform transition-transform duration-200">
+              3
+            </div>
+          </div>
+        </div>
+        <p id="countdown-hint" class="text-[11px] text-slate-300 font-light">Hãy chuẩn bị nụ cười thật tươi nhé...</p>
+      </div>
+
+      <!-- Finished celebration banner (displays directly below flower when countdown reaches 0, NO popup modal) -->
+      <div id="celebration-banner" class="hidden mt-2 max-w-sm px-4 py-3 rounded-2xl glass-card border border-rose-400/40 text-center animate-fadeIn shadow-2xl">
+        <div class="text-2xl mb-1 animate-bounce">💐</div>
+        <h3 class="font-serif text-lg font-bold text-amber-200 mb-1" id="banner-reveal-title">
+          Em quay sang nhìn anh đi!
+        </h3>
+        <p class="font-sans text-xs text-rose-100 leading-relaxed font-light mb-3 whitespace-pre-line" id="banner-reveal-message">
+          Bó hoa thật anh đang cầm trên tay dành riêng cho em! Chúc mừng 20/10 người yêu của anh ❤️
+        </p>
+        <button onclick="restartExperience()" class="px-5 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold text-xs shadow-md shadow-rose-500/40 transition-all transform hover:scale-105 active:scale-95">
+          🔄 Xem lại từ đầu
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="relative z-20 py-2 text-center text-[10px] text-slate-500 border-t border-white/5 backdrop-blur-sm bg-black/20">
+    <span class="tracking-wider">Thương gửi người con gái anh yêu • 20/10 Trọn Vẹn Yêu Thương</span>
+  </footer>
+
+  <!-- ==================== STUDIO MODAL (SETTINGS & CUSTOMIZATION) ==================== -->
+  <div id="studio-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-lg">
+    <div class="glass-modal w-full max-w-lg max-h-[92vh] rounded-3xl p-5 flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div class="flex items-center space-x-2">
+          <span class="text-lg">⚙️</span>
+          <div>
+            <h3 class="font-serif text-base font-bold text-rose-200">Studio Tuỳ Biến Thiệp</h3>
+            <p class="text-[10px] text-slate-400">Thay đổi ảnh, câu chữ và cài đặt khóa bí mật</p>
+          </div>
+        </div>
+        <button id="studio-close-btn" class="w-7 h-7 rounded-full glass-card flex items-center justify-center text-slate-400 hover:text-white text-sm" aria-label="Đóng Studio">✕</button>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="flex border-b border-white/10 mt-3 text-xs">
+        <button onclick="switchStudioTab('tab-general')" class="studio-tab-btn flex-1 py-2 font-medium text-rose-300 border-b-2 border-rose-500 transition-all" data-tab="tab-general">
+          Thông Tin
+        </button>
+        <button onclick="switchStudioTab('tab-photos')" class="studio-tab-btn flex-1 py-2 font-medium text-slate-400 hover:text-slate-200 transition-all" data-tab="tab-photos">
+          4 Kỷ Niệm
+        </button>
+        <button onclick="switchStudioTab('tab-final')" class="studio-tab-btn flex-1 py-2 font-medium text-slate-400 hover:text-slate-200 transition-all" data-tab="tab-final">
+          Lời Kết & Khóa
+        </button>
+      </div>
+
+      <!-- Tab Contents (Scrollable) -->
+      <div class="flex-1 overflow-y-auto py-3 space-y-4 text-xs pr-1">
+        <!-- Tab 1: General Info -->
+        <div id="tab-general" class="studio-tab-pane space-y-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Tên người nhận (Her Name):</label>
+            <input type="text" id="cfg-her-name" class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 text-white focus:outline-none focus:border-rose-400" placeholder="VD: Em yêu, Lan Anh...">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Câu trích dẫn gương soi (Chương 2):</label>
+            <textarea id="cfg-mirror-quote" rows="3" class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 text-white focus:outline-none focus:border-rose-400" placeholder="Câu nói xuất hiện sau khi lau sạch gương..."></textarea>
+          </div>
+        </div>
+
+        <!-- Tab 2: 4 Photos & Captions -->
+        <div id="tab-photos" class="studio-tab-pane hidden space-y-4">
+          <p class="text-[11px] text-slate-400 italic">Tải lên tối đa 4 ảnh. Ảnh sẽ tự động được nén (cạnh tối đa 900px, JPEG 0.8) để tiết kiệm bộ nhớ.</p>
+
+          <!-- 4 Photo editors -->
+          <div class="space-y-4" id="photo-editors-container">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Final Reveal & Secret Lock -->
+        <div id="tab-final" class="studio-tab-pane hidden space-y-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Tiêu đề thông điệp cuối (Chương 4):</label>
+            <input type="text" id="cfg-final-title" class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 text-white focus:outline-none focus:border-rose-400" placeholder="VD: Em quay sang nhìn anh đi!">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Nội dung thông điệp tặng hoa thật:</label>
+            <textarea id="cfg-final-message" rows="4" class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 text-white focus:outline-none focus:border-rose-400" placeholder="Lời nhắn gửi trao em khi đưa bó hoa thật..."></textarea>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Thời gian đếm ngược nhận hoa (giây):</label>
+            <input type="number" id="cfg-countdown-seconds" min="1" max="60" class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 text-white focus:outline-none focus:border-rose-400" placeholder="3">
+            <p class="text-[10px] text-slate-400 mt-0.5">Số giây đếm ngược để chuẩn bị trao hoa thật (mặc định 3s theo kịch bản: 3... 2... 1...).</p>
+          </div>
+
+          <!-- Secret Lock Setting -->
+          <div class="pt-3 border-t border-white/10">
+            <label class="flex items-center space-x-2.5 cursor-pointer">
+              <input type="checkbox" id="cfg-secret-lock" class="w-4 h-4 rounded text-rose-500 bg-white/10 border-white/20 focus:ring-0">
+              <span class="text-rose-200 font-medium">🔒 Ẩn nút Cài đặt (Studio Lock)</span>
+            </label>
+            <p class="text-[10px] text-slate-400 mt-1 pl-6 leading-relaxed">
+              Khi bật, nút Studio ở thanh tiêu đề sẽ biến mất. Để mở lại, chạm liên tiếp <strong>3 lần vào góc trên bên trái màn hình</strong>.
+            </p>
+          </div>
+
+          <!-- Backup / Restore JSON -->
+          <div class="pt-3 border-t border-white/10 flex space-x-2">
+            <button onclick="exportConfigJSON()" class="flex-1 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 text-[11px] transition-colors">
+              📥 Xuất cấu hình JSON
+            </button>
+            <button onclick="importConfigJSON()" class="flex-1 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 text-[11px] transition-colors">
+              📤 Nhập cấu hình JSON
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+        <button onclick="resetDefaultConfig()" class="text-[11px] text-slate-400 hover:text-rose-300 transition-colors">
+          Khôi phục mặc định
+        </button>
+        <div class="flex items-center space-x-2">
+          <button id="studio-cancel-btn" class="px-3 py-1.5 rounded-xl text-slate-300 hover:bg-white/10 text-xs transition-colors">
+            Hủy
+          </button>
+          <button onclick="saveStudioConfig()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium text-xs shadow-md shadow-rose-500/30 transition-all">
+            Lưu Cấu Hình
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-notification" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 hidden px-4 py-2 rounded-full glass-card border border-rose-400/40 text-xs text-rose-100 shadow-xl transition-all duration-300">
+    Thông báo
+  </div>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    /**
+     * STORAGE & DEFAULT CONFIGURATION
+     */
+    const STORAGE_KEY = "valentine_2010_universe_v2";
+
+    const defaultConfig = {
+      herName: "Em yêu",
+      secretLock: false,
+      photos: [
+        {
+          url: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop&q=80",
+          date: "Kỷ niệm #1",
+          title: "Nụ cười tỏa nắng",
+          caption: "Từ khoảnh khắc đầu tiên nhìn thấy nụ cười của em, thế giới của anh bỗng nhiên dịu dàng hơn hẳn."
+        },
+        {
+          url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&auto=format&fit=crop&q=80",
+          date: "Kỷ niệm #2",
+          title: "Khoảnh khắc ngọt ngào",
+          caption: "Mỗi phút giây ở bên em đều trở thành một ký ức mà anh muốn giữ thật lâu."
+        },
+        {
+          url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&auto=format&fit=crop&q=80",
+          date: "Kỷ niệm #3",
+          title: "Bên nhau bình yên",
+          caption: "Cảm ơn em đã bước vào thế giới của anh và mang theo thật nhiều ánh sáng."
+        },
+        {
+          url: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&auto=format&fit=crop&q=80",
+          date: "Kỷ niệm #4",
+          title: "Mãi yêu em",
+          caption: "Chỉ cần nhìn thấy em hạnh phúc, mọi mệt mỏi ngoài kia đều trở nên nhẹ nhàng."
+        }
+      ],
+      mirrorQuote: "Phía sau lớp sương mù luôn là hình bóng người con gái anh thương nhất...",
+      finalRevealTitle: "Em quay sang nhìn anh đi!",
+      finalRevealMessage: "Hoa trên màn hình dù lung linh đến mấy... cũng không sánh bằng bó hoa thật anh đang cầm trên tay dành riêng cho em! Chúc mừng 20/10 người yêu của anh ❤️",
+      countdownSeconds: 3
+    };
+
+    let configData = JSON.parse(JSON.stringify(defaultConfig));
+
+    const appState = {
+      chapter: 1,
+      scanProgress: 0,
+      activePhotoIndex: 0,
+      isScanning: false,
+      isAutoPlaying: false,
+      isSoundEnabled: true,
+      isMirrorCleared: false,
+      isCountdownRunning: false,
+      isFinalRevealVisible: false
+    };
+
+    /**
+     * WEB AUDIO API SOUND ENGINE
+     */
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.masterGain = null;
+        this.musicBoxTimer = null;
+        this.musicBoxNotes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50]; // C5, D5, E5, G5, A5, C6
+        this.musicPattern = [0, 2, 4, 3, 2, 0, 1, 3, 4, 2, 1, 0];
+        this.noteIndex = 0;
+      }
+
+      init() {
+        if (this.ctx) return;
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContext) return;
+          this.ctx = new AudioContext();
+          this.masterGain = this.ctx.createGain();
+          this.masterGain.gain.setValueAtTime(0.5, this.ctx.currentTime);
+          this.masterGain.connect(this.ctx.destination);
+          this.startMusicBox();
+        } catch (e) {
+          console.warn("Web Audio API not supported or blocked", e);
+        }
+      }
+
+      resume() {
+        if (!this.ctx) this.init();
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      setMuted(muted) {
+        if (!this.masterGain || !this.ctx) return;
+        this.masterGain.gain.setValueAtTime(muted ? 0 : 0.5, this.ctx.currentTime);
+      }
+
+      startMusicBox() {
+        if (this.musicBoxTimer || !this.ctx) return;
+        this.musicBoxTimer = setInterval(() => {
+          if (!appState.isSoundEnabled || this.ctx.state !== 'running') return;
+          const noteFreq = this.musicBoxNotes[this.musicPattern[this.noteIndex % this.musicPattern.length]];
+          this.noteIndex++;
+          this.playBellNote(noteFreq, 0.08);
+        }, 420);
+      }
+
+      stopMusicBox() {
+        if (this.musicBoxTimer) {
+          clearInterval(this.musicBoxTimer);
+          this.musicBoxTimer = null;
+        }
+      }
+
+      playBellNote(freq, vol = 0.1) {
+        if (!this.ctx || !appState.isSoundEnabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(vol, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+
+          osc.start(now);
+          osc.stop(now + 1.25);
+        } catch (e) {}
+      }
+
+      playHeartbeat() {
+        if (!this.ctx || !appState.isSoundEnabled) return;
+        try {
+          const now = this.ctx.currentTime;
+
+          // First thump
+          const osc1 = this.ctx.createOscillator();
+          const gain1 = this.ctx.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(65, now);
+          osc1.frequency.exponentialRampToValueAtTime(30, now + 0.12);
+          gain1.gain.setValueAtTime(0.4, now);
+          gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+          osc1.connect(gain1);
+          gain1.connect(this.masterGain);
+          osc1.start(now);
+          osc1.stop(now + 0.15);
+
+          // Second thump (delayed 180ms)
+          setTimeout(() => {
+            if (!this.ctx || !appState.isSoundEnabled) return;
+            const t2 = this.ctx.currentTime;
+            const osc2 = this.ctx.createOscillator();
+            const gain2 = this.ctx.createGain();
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(55, t2);
+            osc2.frequency.exponentialRampToValueAtTime(25, t2 + 0.12);
+            gain2.gain.setValueAtTime(0.3, t2);
+            gain2.gain.exponentialRampToValueAtTime(0.001, t2 + 0.14);
+            osc2.connect(gain2);
+            gain2.connect(this.masterGain);
+            osc2.start(t2);
+            osc2.stop(t2 + 0.15);
+          }, 180);
+        } catch (e) {}
+      }
+
+      playSparkle() {
+        if (!this.ctx || !appState.isSoundEnabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          const freq = 1200 + Math.random() * 800;
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now);
+          osc.frequency.exponentialRampToValueAtTime(freq * 1.5, now + 0.15);
+
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+          osc.start(now);
+          osc.stop(now + 0.22);
+        } catch (e) {}
+      }
+
+      playWhoosh() {
+        if (!this.ctx || !appState.isSoundEnabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(200, now);
+          osc.frequency.exponentialRampToValueAtTime(550, now + 0.15);
+          osc.frequency.exponentialRampToValueAtTime(100, now + 0.38);
+
+          gain.gain.setValueAtTime(0.01, now);
+          gain.gain.linearRampToValueAtTime(0.25, now + 0.15);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+          osc.start(now);
+          osc.stop(now + 0.42);
+        } catch (e) {}
+      }
+
+      playTick() {
+        if (!this.ctx || !appState.isSoundEnabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, now);
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+          osc.start(now);
+          osc.stop(now + 0.06);
+        } catch (e) {}
+      }
+
+      playVictory() {
+        if (!this.ctx || !appState.isSoundEnabled) return;
+        try {
+          const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50]; // C chord arpeggio
+          notes.forEach((freq, idx) => {
+            setTimeout(() => {
+              this.playBellNote(freq, 0.25);
+            }, idx * 90);
+          });
+        } catch (e) {}
+      }
+    }
+
+    const soundEngine = new SoundEngine();
+
+    function triggerVibration(pattern) {
+      if ('vibrate' in navigator && typeof navigator.vibrate === 'function') {
+        try { navigator.vibrate(pattern); } catch (e) {}
+      }
+    }
+
+    /**
+     * INITIALIZATION & CONFIG LOADING
+     */
+    function loadConfig() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          // If stored countdownSeconds is 10 (the old default before matching spec), update to 3
+          if (parsed.countdownSeconds === 10) {
+            parsed.countdownSeconds = 3;
+          }
+          configData = Object.assign({}, defaultConfig, parsed);
+        }
+      } catch (e) {
+        console.warn("Could not read from localStorage, using default config.", e);
+        configData = JSON.parse(JSON.stringify(defaultConfig));
+      }
+      applyConfigToUI();
+    }
+
+    function applyConfigToUI() {
+      // Header and Name
+      document.getElementById('header-her-name').textContent = configData.herName || "Em yêu";
+
+      // Chapter 1 Photos
+      for (let i = 0; i < 4; i++) {
+        const photo = configData.photos[i] || defaultConfig.photos[i];
+        const el = document.getElementById(`scan-photo-${i}`);
+        if (el && photo) el.src = photo.url;
+      }
+
+      // Chapter 2 Mirror Background & Quote
+      const mirrorImg = document.getElementById('mirror-bg-img');
+      if (mirrorImg && configData.photos[0]) {
+        mirrorImg.src = configData.photos[0].url;
+      }
+      const quoteEl = document.getElementById('mirror-quote-text');
+      if (quoteEl) quoteEl.textContent = configData.mirrorQuote;
+
+      // Chapter 3 Memory Cards
+      for (let i = 0; i < 4; i++) {
+        const p = configData.photos[i] || defaultConfig.photos[i];
+        if (!p) continue;
+        const img = document.getElementById(`card-img-${i}`);
+        const date = document.getElementById(`card-date-${i}`);
+        const title = document.getElementById(`card-title-${i}`);
+        const cap = document.getElementById(`card-caption-${i}`);
+        if (img) img.src = p.url;
+        if (date) date.textContent = p.date || `Kỷ niệm #${i + 1}`;
+        if (title) title.textContent = p.title || `Kỷ niệm #${i + 1}`;
+        if (cap) cap.textContent = p.caption || "";
+      }
+
+      // Chapter 4 Orbit Photos & Final Reveal
+      for (let i = 0; i < 4; i++) {
+        const p = configData.photos[i] || defaultConfig.photos[i];
+        const orbitImg = document.querySelector(`#orbit-photo-${i} img`);
+        if (orbitImg && p) orbitImg.src = p.url;
+      }
+      const bannerTitle = document.getElementById('banner-reveal-title');
+      const bannerMsg = document.getElementById('banner-reveal-message');
+      if (bannerTitle) bannerTitle.textContent = configData.finalRevealTitle || "Em quay sang nhìn anh đi!";
+      if (bannerMsg) bannerMsg.textContent = configData.finalRevealMessage || "";
+
+      // Secret Lock for Studio Button
+      const studioBtn = document.getElementById('studio-open-btn');
+      if (studioBtn) {
+        studioBtn.style.display = configData.secretLock ? 'none' : 'flex';
+      }
+    }
+
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById('toast-notification');
+      toast.textContent = msg;
+      toast.style.borderColor = isError ? '#ef4444' : 'rgba(244, 63, 94, 0.5)';
+      toast.classList.remove('hidden');
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 2600);
+    }
+
+    /**
+     * CHAPTER NAVIGATION
+     */
+    function switchChapter(chapNum) {
+      soundEngine.resume();
+      appState.chapter = chapNum;
+
+      // Update background if Chapter 4
+      if (chapNum === 4) {
+        document.body.classList.add('bg-chapter-4');
+      } else {
+        document.body.classList.remove('bg-chapter-4');
+      }
+
+      // Hide all chapter panels
+      document.querySelectorAll('.chapter-panel').forEach(p => p.classList.add('hidden'));
+
+      // Show targeted panel
+      const targetPanel = document.getElementById(`chapter-${chapNum}`);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+        targetPanel.classList.add('animate-fadeIn');
+      }
+
+      // Update Header Stepper UI
+      document.querySelectorAll('.chapter-step-btn').forEach(btn => {
+        const step = parseInt(btn.getAttribute('data-step'), 10);
+        const circle = btn.querySelector('span:first-child');
+        if (step === chapNum) {
+          btn.classList.remove('opacity-50');
+          circle.className = 'w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-rose-500 text-white shadow-lg shadow-rose-500/50';
+        } else if (step < chapNum) {
+          btn.classList.remove('opacity-50');
+          circle.className = 'w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-emerald-500 text-white';
+          circle.textContent = '✓';
+        } else {
+          btn.classList.add('opacity-50');
+          circle.className = 'w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] transition-all bg-white/10 text-slate-300';
+          circle.textContent = step;
+        }
+      });
+
+      // Chapter-specific initialization
+      if (chapNum === 2) {
+        initFogCanvas();
+      } else if (chapNum === 3) {
+        updateDeckLayout();
+        triggerTypewriterForActiveCard();
+      } else if (chapNum === 4) {
+        stopAutoPlay();
+        startChapter4();
+      } else {
+        stopAutoPlay();
+      }
+    }
+
+    /**
+     * CHAPTER 1: BIOMETRIC HEART SCANNER
+     */
+    let scanStartTime = null;
+    let scanAnimFrame = null;
+    let scanHeartbeatInterval = null;
+    const SCAN_DURATION = 3200; // 3.2 seconds
+
+    const scannerTarget = document.getElementById('scanner-touch-target');
+    const scanCircle = document.getElementById('scan-progress-circle');
+    const scanPercentText = document.getElementById('scan-percent-text');
+    const scanStatusText = document.getElementById('scan-status-text');
+    const laserLine = document.getElementById('laser-line');
+    const scanOverlay = document.getElementById('scan-prompt-overlay');
+
+    const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * 90; // 565.48
+
+    function startScanning(e) {
+      if (e) e.preventDefault();
+      soundEngine.resume();
+      if (appState.isScanning || appState.chapter !== 1) return;
+
+      appState.isScanning = true;
+      scanStartTime = performance.now();
+      laserLine.classList.add('animate-laser-sweep');
+      laserLine.style.opacity = '1';
+      scanOverlay.style.opacity = '0';
+
+      // Initial heartbeat
+      soundEngine.playHeartbeat();
+      triggerVibration([40]);
+
+      scanHeartbeatInterval = setInterval(() => {
+        if (!appState.isScanning) return;
+        soundEngine.playHeartbeat();
+        triggerVibration([45]);
+      }, 600);
+
+      function step(timestamp) {
+        if (!appState.isScanning) return;
+        const elapsed = timestamp - scanStartTime;
+        const progress = Math.min(100, (elapsed / SCAN_DURATION) * 100);
+        appState.scanProgress = progress;
+
+        // SVG Circle Offset
+        const offset = CIRCLE_CIRCUMFERENCE - (progress / 100) * CIRCLE_CIRCUMFERENCE;
+        scanCircle.style.strokeDashoffset = offset;
+        scanPercentText.textContent = `${Math.round(progress)}%`;
+
+        // Update status text and photos cross-fade
+        updateScanVisuals(progress);
+
+        if (progress < 100) {
+          scanAnimFrame = requestAnimationFrame(step);
+        } else {
+          completeScan();
+        }
+      }
+
+      scanAnimFrame = requestAnimationFrame(step);
+    }
+
+    function cancelScanning() {
+      if (!appState.isScanning || appState.scanProgress >= 100) return;
+      appState.isScanning = false;
+      cancelAnimationFrame(scanAnimFrame);
+      clearInterval(scanHeartbeatInterval);
+
+      laserLine.classList.remove('animate-laser-sweep');
+      laserLine.style.opacity = '0';
+      scanOverlay.style.opacity = '1';
+
+      // Reset progress
+      appState.scanProgress = 0;
+      scanCircle.style.strokeDashoffset = CIRCLE_CIRCUMFERENCE;
+      scanPercentText.textContent = `0%`;
+      scanStatusText.textContent = 'Đang chờ chạm để đồng bộ nhịp tim...';
+
+      // Reset photos
+      for (let i = 0; i < 4; i++) {
+        const el = document.getElementById(`scan-photo-${i}`);
+        if (el) {
+          el.style.opacity = i === 0 ? '1' : '0';
+          el.style.filter = 'blur(6px)';
+        }
+      }
+    }
+
+    function updateScanVisuals(progress) {
+      // Cross-fade 4 photos & decrease blur
+      const blurVal = Math.max(0, 6 - (progress / 100) * 6);
+
+      let activeIdx = 0;
+      if (progress < 25) {
+        activeIdx = 0;
+        scanStatusText.textContent = "Đang kết nối tần số trái tim...";
+      } else if (progress < 50) {
+        activeIdx = 1;
+        scanStatusText.textContent = "Đồng bộ hóa nhịp đập yêu thương...";
+      } else if (progress < 75) {
+        activeIdx = 2;
+        scanStatusText.textContent = "Khai mở những ký ức ngọt ngào...";
+      } else {
+        activeIdx = 3;
+        scanStatusText.textContent = "Hoàn tất xác thực tình yêu!";
+      }
+
+      for (let i = 0; i < 4; i++) {
+        const el = document.getElementById(`scan-photo-${i}`);
+        if (el) {
+          el.style.opacity = i === activeIdx ? '1' : '0';
+          el.style.filter = `blur(${blurVal.toFixed(1)}px)`;
+        }
+      }
+    }
+
+    function completeScan() {
+      appState.isScanning = false;
+      cancelAnimationFrame(scanAnimFrame);
+      clearInterval(scanHeartbeatInterval);
+
+      soundEngine.playVictory();
+      triggerVibration([80, 50, 100]);
+      scanStatusText.textContent = "✨ Trái tim đã hòa làm một!";
+      laserLine.style.opacity = '0';
+
+      setTimeout(() => {
+        switchChapter(2);
+      }, 700);
+    }
+
+    // Attach Pointer Events to Scanner
+    if (scannerTarget) {
+      scannerTarget.addEventListener('pointerdown', (e) => {
+        scannerTarget.setPointerCapture(e.pointerId);
+        startScanning(e);
+      });
+      scannerTarget.addEventListener('pointerup', cancelScanning);
+      scannerTarget.addEventListener('pointercancel', cancelScanning);
+      scannerTarget.addEventListener('lostpointercapture', cancelScanning);
+    }
+
+    /**
+     * CHAPTER 2: INTERACTIVE FOGGY MIRROR
+     */
+    let fogCanvas = document.getElementById('fog-canvas');
+    let fogCtx = null;
+    let isWiping = false;
+    let fogSamplingFrame = 0;
+
+    function initFogCanvas() {
+      fogCanvas = document.getElementById('fog-canvas');
+      if (!fogCanvas) return;
+
+      const rect = fogCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      fogCanvas.width = rect.width * dpr;
+      fogCanvas.height = rect.height * dpr;
+
+      fogCtx = fogCanvas.getContext('2d');
+      fogCtx.scale(dpr, dpr);
+
+      // Draw frosty mist
+      drawFogPattern(rect.width, rect.height);
+      appState.isMirrorCleared = false;
+      document.getElementById('fog-cleared-pct').textContent = '0';
+      fogCanvas.style.opacity = '1';
+      document.getElementById('goto-chapter-3-btn').classList.add('hidden');
+      document.getElementById('mirror-quote-card').style.opacity = '0';
+    }
+
+    function drawFogPattern(w, h) {
+      if (!fogCtx) return;
+      fogCtx.globalCompositeOperation = 'source-over';
+
+      // Frosty gradient
+      const grad = fogCtx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, 'rgba(235, 240, 248, 0.95)');
+      grad.addColorStop(0.5, 'rgba(225, 232, 242, 0.92)');
+      grad.addColorStop(1, 'rgba(240, 245, 252, 0.96)');
+      fogCtx.fillStyle = grad;
+      fogCtx.fillRect(0, 0, w, h);
+
+      // Frosty noise/sparkles
+      fogCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      for (let i = 0; i < 400; i++) {
+        const x = Math.random() * w;
+        const y = Math.random() * h;
+        const r = Math.random() * 2;
+        fogCtx.beginPath();
+        fogCtx.arc(x, y, r, 0, Math.PI * 2);
+        fogCtx.fill();
+      }
+    }
+
+    function wipeFogAt(clientX, clientY) {
+      if (!fogCtx || appState.isMirrorCleared) return;
+      const rect = fogCanvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      fogCtx.globalCompositeOperation = 'destination-out';
+
+      const radius = 38;
+      const grad = fogCtx.createRadialGradient(x, y, 6, x, y, radius);
+      grad.addColorStop(0, 'rgba(0, 0, 0, 1)');
+      grad.addColorStop(0.65, 'rgba(0, 0, 0, 0.7)');
+      grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+      fogCtx.fillStyle = grad;
+      fogCtx.beginPath();
+      fogCtx.arc(x, y, radius, 0, Math.PI * 2);
+      fogCtx.fill();
+
+      // Emit sparkle particles
+      createSparklesAt(clientX, clientY, 3);
+      soundEngine.playSparkle();
+
+      // Sparsely sample cleared area
+      fogSamplingFrame++;
+      if (fogSamplingFrame % 8 === 0) {
+        checkFogClearedRatio(rect.width, rect.height);
+      }
+    }
+
+    function checkFogClearedRatio(w, h) {
+      if (!fogCtx || appState.isMirrorCleared) return;
+      const dpr = window.devicePixelRatio || 1;
+      const sampleCols = 20;
+      const sampleRows = 25;
+      const stepX = (w * dpr) / sampleCols;
+      const stepY = (h * dpr) / sampleRows;
+
+      let transparentPoints = 0;
+      const totalPoints = sampleCols * sampleRows;
+
+      try {
+        const imgData = fogCtx.getImageData(0, 0, w * dpr, h * dpr).data;
+        const canvasWidth = Math.round(w * dpr);
+
+        for (let r = 0; r < sampleRows; r++) {
+          for (let c = 0; c < sampleCols; c++) {
+            const px = Math.floor(c * stepX);
+            const py = Math.floor(r * stepY);
+            const index = (py * canvasWidth + px) * 4 + 3; // alpha channel
+            if (imgData[index] < 120) {
+              transparentPoints++;
+            }
+          }
+        }
+
+        const ratio = transparentPoints / totalPoints;
+        const pct = Math.round(ratio * 100);
+        document.getElementById('fog-cleared-pct').textContent = pct;
+
+        if (pct >= 40) {
+          completeMirrorReveal();
+        }
+      } catch (e) {
+        // Fallback if cross-origin or security error
+      }
+    }
+
+    function completeMirrorReveal() {
+      if (appState.isMirrorCleared) return;
+      appState.isMirrorCleared = true;
+
+      // Smoothly fade remaining fog
+      if (fogCanvas) {
+        fogCanvas.style.opacity = '0';
+      }
+
+      // Brighten background photo
+      const mirrorImg = document.getElementById('mirror-bg-img');
+      if (mirrorImg) {
+        mirrorImg.classList.remove('brightness-90');
+        mirrorImg.classList.add('brightness-110');
+      }
+
+      // Play chime chord
+      soundEngine.playVictory();
+      triggerVibration([50, 40, 60]);
+
+      // Reveal quote card
+      const quoteCard = document.getElementById('mirror-quote-card');
+      quoteCard.style.opacity = '1';
+      quoteCard.style.transform = 'translateY(0)';
+
+      // Show proceed button
+      const nextBtn = document.getElementById('goto-chapter-3-btn');
+      nextBtn.classList.remove('hidden');
+
+      document.getElementById('skip-mirror-btn').classList.add('hidden');
+    }
+
+    function createSparklesAt(x, y, count = 3) {
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'sparkle-particle';
+        const size = Math.random() * 6 + 4;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${x}px`;
+        p.style.top = `${y}px`;
+
+        const tx = (Math.random() - 0.5) * 60;
+        const ty = (Math.random() - 0.5) * 60 - 20;
+        p.style.setProperty('--tx', `${tx}px`);
+        p.style.setProperty('--ty', `${ty}px`);
+
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 850);
+      }
+    }
+
+    // Attach wiping events to fog canvas
+    if (fogCanvas) {
+      fogCanvas.addEventListener('pointerdown', (e) => {
+        isWiping = true;
+        wipeFogAt(e.clientX, e.clientY);
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!isWiping) return;
+        wipeFogAt(e.clientX, e.clientY);
+      });
+      window.addEventListener('pointerup', () => { isWiping = false; });
+      window.addEventListener('pointercancel', () => { isWiping = false; });
+    }
+
+    /**
+     * CHAPTER 3: 3D STACKED MEMORY DECK
+     */
+    let isTransitioningCard = false;
+    let autoPlayTimer = null;
+    let typewriterTimer = null;
+
+    function updateDeckLayout() {
+      const activeIdx = appState.activePhotoIndex;
+
+      for (let i = 0; i < 4; i++) {
+        const card = document.getElementById(`card-${i}`);
+        if (!card) continue;
+
+        // Clean fly-out classes
+        card.classList.remove('card-fly-out-left', 'card-fly-out-right');
+
+        // Relative offset in stack: 0 = current, 1 = behind right, 2 = behind left, 3 = bottom back
+        const offset = (i - activeIdx + 4) % 4;
+
+        if (offset === 0) {
+          // Front Card
+          card.style.transform = 'translate3d(0, 0, 0) rotateZ(0deg) scale(1)';
+          card.style.opacity = '1';
+          card.style.zIndex = '30';
+          card.style.filter = 'blur(0px)';
+        } else if (offset === 1) {
+          // Second Card (behind right)
+          card.style.transform = 'translate3d(18px, 14px, -60px) rotateZ(5deg) scale(0.93)';
+          card.style.opacity = '0.75';
+          card.style.zIndex = '20';
+          card.style.filter = 'blur(1px)';
+        } else if (offset === 2) {
+          // Third Card (behind left)
+          card.style.transform = 'translate3d(-18px, 24px, -120px) rotateZ(-5deg) scale(0.86)';
+          card.style.opacity = '0.45';
+          card.style.zIndex = '10';
+          card.style.filter = 'blur(2px)';
+        } else {
+          // Fourth Card (furthest back)
+          card.style.transform = 'translate3d(0, 32px, -180px) scale(0.8)';
+          card.style.opacity = '0';
+          card.style.zIndex = '5';
+          card.style.filter = 'blur(3px)';
+        }
+      }
+
+      // Update Pagination Dots
+      document.querySelectorAll('.deck-dot').forEach((dot) => {
+        const idx = parseInt(dot.getAttribute('data-index'), 10);
+        if (idx === activeIdx) {
+          dot.className = 'deck-dot w-2.5 h-2.5 rounded-full bg-rose-500 transition-all scale-125 shadow-[0_0_8px_#f43f5e]';
+        } else {
+          dot.className = 'deck-dot w-2 h-2 rounded-full bg-white/25 transition-all';
+        }
+      });
+
+      // Tap hint visibility: hide on the last card (activeIdx === 3)
+      const tapHint = document.getElementById('tap-card-hint');
+      if (tapHint) {
+        if (activeIdx === 3) {
+          tapHint.classList.add('hidden');
+        } else {
+          tapHint.classList.remove('hidden');
+        }
+      }
+
+      // Show Chapter 4 CTA Button ONLY on the last card
+      const giftBtnContainer = document.getElementById('gift-reveal-btn-container');
+      if (giftBtnContainer) {
+        const lastCardIndex = 3; // 4th card (0, 1, 2, 3)
+        if (activeIdx === lastCardIndex) {
+          giftBtnContainer.classList.remove('opacity-0', 'pointer-events-none', 'scale-90', 'h-0', 'overflow-hidden');
+          giftBtnContainer.classList.add('opacity-100', 'scale-100', 'mt-2');
+        } else {
+          giftBtnContainer.classList.add('opacity-0', 'pointer-events-none', 'scale-90', 'h-0', 'overflow-hidden');
+          giftBtnContainer.classList.remove('opacity-100', 'scale-100', 'mt-2');
+        }
+      }
+
+      // Update cursor style on cards: pointer only if active and not on the last card
+      for (let i = 0; i < 4; i++) {
+        const card = document.getElementById(`card-${i}`);
+        if (!card) continue;
+        if (activeIdx < 3 && i === activeIdx) {
+          card.style.cursor = 'pointer';
+        } else {
+          card.style.cursor = 'default';
+        }
+      }
+    }
+
+    function handleCardClick(clickedIndex) {
+      if (isTransitioningCard) return;
+      if (appState.activePhotoIndex >= 3) {
+        // Đã đến ảnh cuối cùng thì không cần chuyển nữa
+        return;
+      }
+      nextCard();
+    }
+
+    function nextCard() {
+      if (isTransitioningCard) return;
+      if (appState.activePhotoIndex >= 3) {
+        // Đã đến ảnh cuối cùng thì không cần chuyển nữa
+        return;
+      }
+      isTransitioningCard = true;
+      soundEngine.resume();
+      soundEngine.playWhoosh();
+      triggerVibration([25]);
+
+      const currentCard = document.getElementById(`card-${appState.activePhotoIndex}`);
+      if (currentCard) {
+        currentCard.classList.add('card-fly-out-left');
+
+        // Burst sparkles at card edges
+        const rect = currentCard.getBoundingClientRect();
+        createSparklesAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 8);
+      }
+
+      setTimeout(() => {
+        appState.activePhotoIndex = Math.min(3, appState.activePhotoIndex + 1);
+        updateDeckLayout();
+        triggerTypewriterForActiveCard();
+        isTransitioningCard = false;
+      }, 350);
+    }
+
+    function prevCard() {
+      if (isTransitioningCard) return;
+      isTransitioningCard = true;
+      soundEngine.resume();
+      soundEngine.playWhoosh();
+      triggerVibration([25]);
+
+      const prevIndex = (appState.activePhotoIndex - 1 + 4) % 4;
+      const incomingCard = document.getElementById(`card-${prevIndex}`);
+      if (incomingCard) {
+        incomingCard.classList.add('card-fly-out-right');
+      }
+
+      setTimeout(() => {
+        appState.activePhotoIndex = prevIndex;
+        updateDeckLayout();
+        triggerTypewriterForActiveCard();
+        isTransitioningCard = false;
+      }, 350);
+    }
+
+    function goToCard(targetIndex) {
+      if (isTransitioningCard || targetIndex === appState.activePhotoIndex) return;
+      isTransitioningCard = true;
+      soundEngine.resume();
+      soundEngine.playWhoosh();
+
+      const currentCard = document.getElementById(`card-${appState.activePhotoIndex}`);
+      if (currentCard) {
+        currentCard.classList.add('card-fly-out-left');
+      }
+
+      setTimeout(() => {
+        appState.activePhotoIndex = targetIndex;
+        updateDeckLayout();
+        triggerTypewriterForActiveCard();
+        isTransitioningCard = false;
+      }, 350);
+    }
+
+    function triggerTypewriterForActiveCard() {
+      clearTimeout(typewriterTimer);
+      const activeIdx = appState.activePhotoIndex;
+      const photo = configData.photos[activeIdx] || defaultConfig.photos[activeIdx];
+      if (!photo) return;
+
+      const titleEl = document.getElementById(`card-title-${activeIdx}`);
+      const captionEl = document.getElementById(`card-caption-${activeIdx}`);
+      if (!titleEl || !captionEl) return;
+
+      const fullTitle = photo.title || `Kỷ niệm #${activeIdx + 1}`;
+      const fullCaption = photo.caption || "";
+
+      titleEl.textContent = "";
+      captionEl.textContent = "";
+      captionEl.classList.add('typewriter-cursor');
+
+      let titleIdx = 0;
+      function typeTitle() {
+        if (titleIdx < fullTitle.length) {
+          titleEl.textContent += fullTitle[titleIdx];
+          titleIdx++;
+          typewriterTimer = setTimeout(typeTitle, 25);
+        } else {
+          let capIdx = 0;
+          function typeCap() {
+            if (capIdx < fullCaption.length) {
+              captionEl.textContent += fullCaption[capIdx];
+              capIdx++;
+              typewriterTimer = setTimeout(typeCap, 18);
+            } else {
+              captionEl.classList.remove('typewriter-cursor');
+            }
+          }
+          typeCap();
+        }
+      }
+      typeTitle();
+    }
+
+    function toggleAutoPlay() {
+      if (appState.isAutoPlaying) {
+        stopAutoPlay();
+      } else {
+        startAutoPlay();
+      }
+    }
+
+    function startAutoPlay() {
+      appState.isAutoPlaying = true;
+      const icon = document.getElementById('autoplay-icon');
+      const text = document.getElementById('autoplay-text');
+      if (icon) icon.textContent = '⏸️';
+      if (text) text.textContent = 'Dừng lại';
+
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(() => {
+        if (appState.chapter !== 3) {
+          stopAutoPlay();
+          return;
+        }
+        nextCard();
+      }, 4200);
+    }
+
+    function stopAutoPlay() {
+      appState.isAutoPlaying = false;
+      const icon = document.getElementById('autoplay-icon');
+      const text = document.getElementById('autoplay-text');
+      if (icon) icon.textContent = '▶️';
+      if (text) text.textContent = 'Tự chuyển ảnh';
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    // Touch Swipe Gesture for 3D Deck
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const deckStage = document.getElementById('deck-touch-stage');
+
+    if (deckStage) {
+      deckStage.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      deckStage.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) {
+            nextCard();
+          } else {
+            prevCard();
+          }
+        }
+      }, { passive: true });
+
+      // Subtle 3D Tilt Effect on mousemove / touchmove
+      deckStage.addEventListener('mousemove', (e) => {
+        const currentCard = document.getElementById(`card-${appState.activePhotoIndex}`);
+        if (!currentCard || isTransitioningCard) return;
+        const rect = deckStage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        currentCard.style.transform = `translate3d(0, 0, 0) rotateX(${-y * 10}deg) rotateY(${x * 12}deg) scale(1.02)`;
+      });
+
+      deckStage.addEventListener('mouseleave', () => {
+        const currentCard = document.getElementById(`card-${appState.activePhotoIndex}`);
+        if (currentCard && !isTransitioningCard) {
+          currentCard.style.transform = 'translate3d(0, 0, 0) rotateZ(0deg) scale(1)';
+        }
+      });
+    }
+
+    /**
+     * CHAPTER 4: ENCHANTED ROSE DOME & GIFTS
+     */
+    let orbitAnimFrame = null;
+    let orbitAngle = 0;
+    let countdownInterval = null;
+
+    function startChapter4() {
+      soundEngine.resume();
+      startOrbitAnimation();
+      resetAndStartCountdown();
+    }
+
+    function startOrbitAnimation() {
+      const radiusX = 142;
+      const radiusY = 36;
+
+      function loop() {
+        if (appState.chapter !== 4) return;
+        orbitAngle += 0.015;
+
+        for (let i = 0; i < 4; i++) {
+          const el = document.getElementById(`orbit-photo-${i}`);
+          if (!el) continue;
+
+          const angle = orbitAngle + (i * Math.PI) / 2;
+          const x = Math.cos(angle) * radiusX;
+          const y = Math.sin(angle) * radiusY;
+          const sinVal = Math.sin(angle);
+
+          // Front of jar: scale up to 1.15, full opacity, z-index 30
+          // Back of jar: scale down to 0.75, opacity 0.55, z-index 10 (behind dome z=20)
+          const scale = 0.75 + 0.38 * ((sinVal + 1) / 2);
+          const opacity = sinVal < 0 ? 0.55 : 1.0;
+          const zIndex = sinVal > 0 ? 30 : 10;
+
+          el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${scale.toFixed(2)})`;
+          el.style.opacity = opacity.toFixed(2);
+          el.style.zIndex = zIndex;
+        }
+
+        orbitAnimFrame = requestAnimationFrame(loop);
+      }
+
+      cancelAnimationFrame(orbitAnimFrame);
+      orbitAnimFrame = requestAnimationFrame(loop);
+    }
+
+    function resetAndStartCountdown() {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+
+      const countdownWrapper = document.getElementById('countdown-wrapper');
+      const celebrationBanner = document.getElementById('celebration-banner');
+      const countdownNumber = document.getElementById('countdown-number');
+
+      if (countdownWrapper) countdownWrapper.classList.remove('hidden');
+      if (celebrationBanner) celebrationBanner.classList.add('hidden');
+
+      const totalSeconds = parseInt(configData.countdownSeconds, 10) || 3;
+      let remaining = totalSeconds;
+
+      if (countdownNumber) countdownNumber.textContent = remaining;
+      soundEngine.playTick();
+      triggerVibration([30]);
+
+      const startTime = performance.now();
+
+      countdownInterval = setInterval(() => {
+        if (appState.chapter !== 4) {
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+          return;
+        }
+
+        const elapsedSeconds = Math.floor((performance.now() - startTime) / 1000);
+        const currentRemaining = totalSeconds - elapsedSeconds;
+
+        if (currentRemaining > 0) {
+          if (currentRemaining !== remaining) {
+            remaining = currentRemaining;
+            if (countdownNumber) {
+              countdownNumber.textContent = remaining;
+              countdownNumber.classList.add('scale-125');
+              setTimeout(() => countdownNumber.classList.remove('scale-125'), 180);
+            }
+            soundEngine.playTick();
+            triggerVibration([35]);
+          }
+        } else {
+          // Finished countdown: exactly 0
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+          if (countdownNumber) {
+            countdownNumber.textContent = "0";
+            countdownNumber.classList.add('scale-125');
+          }
+
+          soundEngine.playVictory();
+          triggerVibration([100, 50, 100, 50, 200]);
+          fireConfettiCelebration();
+
+          // Smoothly reveal banner under the flower (WITHOUT blocking flower)
+          setTimeout(() => {
+            if (appState.chapter === 4) {
+              if (countdownWrapper) countdownWrapper.classList.add('hidden');
+              if (celebrationBanner) celebrationBanner.classList.remove('hidden');
+            }
+          }, 450);
+        }
+      }, 100);
+    }
+
+    function restartExperience() {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+      appState.scanProgress = 0;
+      appState.activePhotoIndex = 0;
+      switchChapter(1);
+    }
+
+    /**
+     * CONFETTI CELEBRATION ENGINE (Chapter 4)
+     */
+    function fireConfettiCelebration() {
+      const canvas = document.getElementById('confetti-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const confettiPieces = [];
+      const colors = ['#f43f5e', '#ec4899', '#f59e0b', '#fbbf24', '#a855f7', '#38bdf8', '#ffffff'];
+
+      for (let i = 0; i < 120; i++) {
+        confettiPieces.push({
+          x: canvas.width / 2,
+          y: canvas.height * 0.45,
+          vx: (Math.random() - 0.5) * 14,
+          vy: (Math.random() - 0.8) * 16,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 12,
+          opacity: 1,
+          isHeart: Math.random() > 0.6
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = 0;
+
+        confettiPieces.forEach(p => {
+          if (p.opacity <= 0) return;
+          active++;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.28; // gravity
+          p.rotation += p.rotationSpeed;
+          p.opacity -= 0.007;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+
+          if (p.isHeart) {
+            // Draw mini heart
+            const s = p.size * 0.7;
+            ctx.beginPath();
+            ctx.moveTo(0, s * 0.3);
+            ctx.bezierCurveTo(-s, -s * 0.5, -s * 0.5, -s, 0, -s * 0.4);
+            ctx.bezierCurveTo(s * 0.5, -s, s, -s * 0.5, 0, s * 0.3);
+            ctx.fill();
+          } else {
+            // Ribbon rect
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+          }
+          ctx.restore();
+        });
+
+        if (active > 0) {
+          requestAnimationFrame(render);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      requestAnimationFrame(render);
+    }
+
+    /**
+     * BACKGROUND STARDUST & STARFIELD ENGINE
+     */
+    function initStarfield() {
+      const canvas = document.getElementById('stars-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+
+      const stars = [];
+      const STAR_COUNT = Math.min(80, Math.floor((w * h) / 12000));
+
+      for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          radius: Math.random() * 1.5 + 0.4,
+          alpha: Math.random(),
+          speed: Math.random() * 0.02 + 0.005,
+          color: Math.random() > 0.4 ? '#ffffff' : (Math.random() > 0.5 ? '#fda4af' : '#fef08a')
+        });
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+        stars.forEach(s => {
+          s.alpha += s.speed;
+          if (s.alpha > 1 || s.alpha < 0.1) s.speed = -s.speed;
+
+          ctx.fillStyle = s.color;
+          ctx.globalAlpha = Math.abs(s.alpha);
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+    }
+
+    /**
+     * STUDIO MODAL, IMAGE COMPRESSION & SETTINGS
+     */
+    const studioModal = document.getElementById('studio-modal');
+    const studioOpenBtn = document.getElementById('studio-open-btn');
+    const studioCloseBtn = document.getElementById('studio-close-btn');
+    const studioCancelBtn = document.getElementById('studio-cancel-btn');
+
+    function openStudio() {
+      soundEngine.resume();
+      populateStudioForm();
+      studioModal.classList.remove('hidden');
+    }
+
+    function closeStudio() {
+      studioModal.classList.add('hidden');
+    }
+
+    function switchStudioTab(tabId) {
+      document.querySelectorAll('.studio-tab-pane').forEach(p => p.classList.add('hidden'));
+      const activePane = document.getElementById(tabId);
+      if (activePane) activePane.classList.remove('hidden');
+
+      document.querySelectorAll('.studio-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.className = 'studio-tab-btn flex-1 py-2 font-medium text-rose-300 border-b-2 border-rose-500 transition-all';
+        } else {
+          btn.className = 'studio-tab-btn flex-1 py-2 font-medium text-slate-400 hover:text-slate-200 transition-all';
+        }
+      });
+    }
+
+    function populateStudioForm() {
+      document.getElementById('cfg-her-name').value = configData.herName || "";
+      document.getElementById('cfg-mirror-quote').value = configData.mirrorQuote || "";
+      document.getElementById('cfg-final-title').value = configData.finalRevealTitle || "";
+      document.getElementById('cfg-final-message').value = configData.finalRevealMessage || "";
+      const countdownSecInput = document.getElementById('cfg-countdown-seconds');
+      if (countdownSecInput) countdownSecInput.value = configData.countdownSeconds || 3;
+      document.getElementById('cfg-secret-lock').checked = !!configData.secretLock;
+
+      // Render 4 photo cards editor
+      const container = document.getElementById('photo-editors-container');
+      container.innerHTML = "";
+
+      for (let i = 0; i < 4; i++) {
+        const photo = configData.photos[i] || defaultConfig.photos[i];
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'p-3 rounded-2xl glass-card border border-white/10 space-y-2.5';
+        cardDiv.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <div class="w-14 h-14 rounded-xl overflow-hidden border border-rose-400/40 flex-shrink-0 bg-black/40">
+              <img id="studio-preview-${i}" src="${photo.url}" alt="Preview" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1">
+              <span class="font-medium text-rose-200 block mb-1">Kỷ niệm #${i + 1}</span>
+              <input type="file" accept="image/*" onchange="handleImageUpload(${i}, this)" class="text-[10px] text-slate-300 file:mr-2 file:py-1 file:px-2.5 file:rounded-full file:border-0 file:text-[10px] file:bg-rose-500/30 file:text-rose-200 hover:file:bg-rose-500/50 cursor-pointer">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-[10px] text-slate-400 block mb-0.5">Ngày / Nhãn:</label>
+              <input type="text" id="cfg-photo-date-${i}" value="${photo.date || ''}" class="w-full px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-rose-400">
+            </div>
+            <div>
+              <label class="text-[10px] text-slate-400 block mb-0.5">Tiêu đề:</label>
+              <input type="text" id="cfg-photo-title-${i}" value="${photo.title || ''}" class="w-full px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-rose-400">
+            </div>
+          </div>
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-0.5">Lời nhắn:</label>
+            <textarea id="cfg-photo-cap-${i}" rows="2" class="w-full px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-rose-400">${photo.caption || ''}</textarea>
+          </div>
+        `;
+        container.appendChild(cardDiv);
+      }
+    }
+
+    async function handleImageUpload(index, fileInput) {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      try {
+        showToast(`Đang nén ảnh #${index + 1}...`);
+        const base64 = await resizeAndCompressImage(file);
+        configData.photos[index].url = base64;
+        const preview = document.getElementById(`studio-preview-${index}`);
+        if (preview) preview.src = base64;
+        showToast(`Đã nén xong ảnh #${index + 1}!`);
+      } catch (err) {
+        showToast("Lỗi khi xử lý ảnh!", true);
+      }
+    }
+
+    function resizeAndCompressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error("Cannot read file"));
+        reader.onload = () => {
+          const img = new Image();
+          img.onerror = () => reject(new Error("Invalid image format"));
+          img.onload = () => {
+            const maxSide = 900;
+            const ratio = Math.min(1, maxSide / Math.max(img.width, img.height));
+            const w = Math.max(1, Math.round(img.width * ratio));
+            const h = Math.max(1, Math.round(img.height * ratio));
+
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return reject(new Error("Canvas 2D unavailable"));
+
+            ctx.drawImage(img, 0, 0, w, h);
+            try {
+              resolve(canvas.toDataURL("image/jpeg", 0.8));
+            } catch (e) {
+              reject(e);
+            }
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function saveStudioConfig() {
+      // Gather inputs
+      configData.herName = document.getElementById('cfg-her-name').value.trim() || "Em yêu";
+      configData.mirrorQuote = document.getElementById('cfg-mirror-quote').value.trim() || defaultConfig.mirrorQuote;
+      configData.finalRevealTitle = document.getElementById('cfg-final-title').value.trim() || defaultConfig.finalRevealTitle;
+      configData.finalRevealMessage = document.getElementById('cfg-final-message').value.trim() || defaultConfig.finalRevealMessage;
+      const countdownSecInput = document.getElementById('cfg-countdown-seconds');
+      if (countdownSecInput) configData.countdownSeconds = parseInt(countdownSecInput.value, 10) || 3;
+      configData.secretLock = document.getElementById('cfg-secret-lock').checked;
+
+      for (let i = 0; i < 4; i++) {
+        const dateInput = document.getElementById(`cfg-photo-date-${i}`);
+        const titleInput = document.getElementById(`cfg-photo-title-${i}`);
+        const capInput = document.getElementById(`cfg-photo-cap-${i}`);
+        if (dateInput) configData.photos[i].date = dateInput.value.trim();
+        if (titleInput) configData.photos[i].title = titleInput.value.trim();
+        if (capInput) configData.photos[i].caption = capInput.value.trim();
+      }
+
+      // Save to localStorage with QuotaExceededError protection
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(configData));
+        showToast("✨ Đã lưu cấu hình thành công!");
+      } catch (err) {
+        if (err.name === 'QuotaExceededError' || err.code === 22) {
+          showToast("⚠️ Dung lượng ảnh vượt giới hạn bộ nhớ trình duyệt! Hãy giảm độ phân giải.", true);
+        } else {
+          showToast("Không thể lưu cấu hình vào bộ nhớ!", true);
+        }
+      }
+
+      applyConfigToUI();
+      closeStudio();
+    }
+
+    function resetDefaultConfig() {
+      if (confirm("Khôi phục toàn bộ nội dung và ảnh về mặc định ban đầu?")) {
+        configData = JSON.parse(JSON.stringify(defaultConfig));
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+        applyConfigToUI();
+        populateStudioForm();
+        showToast("Đã khôi phục cài đặt gốc!");
+      }
+    }
+
+    function exportConfigJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(configData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `thiep_20_10_config.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function importConfigJSON() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'application/json';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const parsed = JSON.parse(event.target.result);
+            configData = Object.assign({}, defaultConfig, parsed);
+            populateStudioForm();
+            showToast("Đã tải cấu hình từ tệp JSON!");
+          } catch (err) {
+            showToast("Tệp JSON không hợp lệ!", true);
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    /**
+     * SECRET 3-TAP UNLOCK GESTURE (Top-Left)
+     */
+    let secretTapCount = 0;
+    let secretTapTimer = null;
+    const secretArea = document.getElementById('secret-trigger-area');
+
+    if (secretArea) {
+      secretArea.addEventListener('click', () => {
+        secretTapCount++;
+        clearTimeout(secretTapTimer);
+
+        if (secretTapCount >= 3) {
+          secretTapCount = 0;
+          // Temporarily unhide Studio button and open modal
+          const studioBtn = document.getElementById('studio-open-btn');
+          if (studioBtn) studioBtn.style.display = 'flex';
+          openStudio();
+          showToast("🔓 Đã mở khóa Studio bí mật!");
+        } else {
+          secretTapTimer = setTimeout(() => {
+            secretTapCount = 0;
+          }, 1200);
+        }
+      });
+    }
+
+    // Sound Toggle Button
+    const soundToggleBtn = document.getElementById('sound-toggle-btn');
+    const soundIcon = document.getElementById('sound-icon');
+
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener('click', () => {
+        soundEngine.resume();
+        appState.isSoundEnabled = !appState.isSoundEnabled;
+        soundEngine.setMuted(!appState.isSoundEnabled);
+        soundIcon.textContent = appState.isSoundEnabled ? '🔊' : '🔇';
+        showToast(appState.isSoundEnabled ? 'Âm thanh đã bật' : 'Âm thanh đã tắt');
+      });
+    }
+
+    // Modal Events
+    if (studioOpenBtn) studioOpenBtn.addEventListener('click', openStudio);
+    if (studioCloseBtn) studioCloseBtn.addEventListener('click', closeStudio);
+    if (studioCancelBtn) studioCancelBtn.addEventListener('click', closeStudio);
+
+    // First user interaction audio unlock
+    ['click', 'touchstart', 'pointerdown'].forEach(ev => {
+      window.addEventListener(ev, () => soundEngine.resume(), { once: true, passive: true });
+    });
+
+    // App Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      loadConfig();
+      initStarfield();
+      const params = new URLSearchParams(window.location.search);
+      const ch = parseInt(params.get('ch'), 10);
+      if (ch >= 1 && ch <= 4) {
+        switchChapter(ch);
+      } else {
+        switchChapter(1);
+      }
+    });
+  </script>
+</body>
+</html>
