@@ -821,38 +821,38 @@
     const STORAGE_KEY = "valentine_2010_universe_v2";
 
     const defaultConfig = {
-      herName: "Em yêu",
+      herName: "Linh Linh",
       secretLock: false,
       photos: [
         {
-          url: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop&q=80",
+          url: "anh1.jpg",
           date: "Kỷ niệm #1",
           title: "Nụ cười tỏa nắng",
           caption: "Từ khoảnh khắc đầu tiên nhìn thấy nụ cười của em, thế giới của anh bỗng nhiên dịu dàng hơn hẳn."
         },
         {
-          url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&auto=format&fit=crop&q=80",
+          url: "anh2.jpg",
           date: "Kỷ niệm #2",
-          title: "Khoảnh khắc ngọt ngào",
-          caption: "Mỗi phút giây ở bên em đều trở thành một ký ức mà anh muốn giữ thật lâu."
+          title: "Nàng thơ giữa mây trời",
+          caption: "Người ta đi khắp núi đồi để ngắm cảnh đẹp, còn anh đi đến đâu cũng chỉ muốn ngắm nhìn em bình yên và rạng rỡ như thế này."
         },
         {
-          url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&auto=format&fit=crop&q=80",
+          url: "anh3.jpg",
           date: "Kỷ niệm #3",
-          title: "Bên nhau bình yên",
-          caption: "Cảm ơn em đã bước vào thế giới của anh và mang theo thật nhiều ánh sáng."
+          title: "Nụ cười làm anh tan chảy",
+          caption: "Người ta nói hoa đồng nội là đẹp nhất, chắc là vì người ta chưa từng thấy khoảnh khắc em cười rạng rỡ như thế này."
         },
         {
-          url: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&auto=format&fit=crop&q=80",
+          url: "anh4.jpg",
           date: "Kỷ niệm #4",
-          title: "Mãi yêu em",
-          caption: "Chỉ cần nhìn thấy em hạnh phúc, mọi mệt mỏi ngoài kia đều trở nên nhẹ nhàng."
+          title: "Điều ngọt ngào nhất dành cho em",
+          caption: "Nắng bên hồ hôm ấy rất đẹp, hoa bên em cũng rất tươi... nhưng anh vẫn muốn tự tay trao cho em một bất ngờ rực rỡ hơn thế ngay bây giờ."
         }
       ],
       mirrorQuote: "Phía sau lớp sương mù luôn là hình bóng người con gái anh thương nhất...",
-      finalRevealTitle: "Em quay sang nhìn anh đi!",
-      finalRevealMessage: "Hoa trên màn hình dù lung linh đến mấy... cũng không sánh bằng bó hoa thật anh đang cầm trên tay dành riêng cho em! Chúc mừng 20/10 người yêu của anh ❤️",
-      countdownSeconds: 3
+      finalRevealTitle: "Món quà thật sự đang ở ngay cạnh em...",
+      finalRevealMessage: "Bó hoa trên màn hình dù lung linh đến mấy, cũng chẳng thể thơm và rực rỡ bằng bó hoa anh đang cầm trên tay lúc này. Chúc mừng 20/10 cô gái anh yêu... Giờ thì em quay sang nhìn anh đi! ❤️",
+      countdownSeconds: 5
     };
 
     let configData = JSON.parse(JSON.stringify(defaultConfig));
@@ -1075,9 +1075,17 @@
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          // If stored countdownSeconds is 10 (the old default before matching spec), update to 3
-          if (parsed.countdownSeconds === 10) {
-            parsed.countdownSeconds = 3;
+          if (parsed.photos && Array.isArray(parsed.photos)) {
+            parsed.photos.forEach((p, idx) => {
+              if (p.url && p.url.includes("unsplash.com")) {
+                p.url = defaultConfig.photos[idx].url;
+                p.title = defaultConfig.photos[idx].title;
+                p.caption = defaultConfig.photos[idx].caption;
+              }
+            });
+          }
+          if (!parsed.herName || parsed.herName === "Em yêu") {
+            parsed.herName = "Linh Linh";
           }
           configData = Object.assign({}, defaultConfig, parsed);
         }
@@ -1090,7 +1098,7 @@
 
     function applyConfigToUI() {
       // Header and Name
-      document.getElementById('header-her-name').textContent = configData.herName || "Em yêu";
+      document.getElementById('header-her-name').textContent = configData.herName || "Linh Linh";
 
       // Chapter 1 Photos
       for (let i = 0; i < 4; i++) {
